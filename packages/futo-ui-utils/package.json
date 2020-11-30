@@ -1,0 +1,20 @@
+{
+  "name": "@futo-ui/utils",
+  "description": "Various utilitary Javascript functions used mostly in @futo-ui projects",
+  "version": "0.8.9",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "npm run build"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "rollup": "^2.13.1"
+  }
+}

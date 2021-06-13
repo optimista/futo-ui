@@ -23,6 +23,9 @@ export default {
     external(),
     babel({
       babelHelpers: "bundled",
+      plugins: [
+        '@babel/plugin-proposal-optional-chaining',
+      ],
       exclude: 'node_modules/**'
     }),
     resolve(),

@@ -1,8 +1,8 @@
 {
   "name": "@futo-ui/core",
   "description": "Various react components used mostly in @futo-ui projects",
-  "version": "0.1.18",
-  "main": "dist/index.js",
+  "version": "0.2.3",
+  "main": "dist/index",
   "module": "dist/index.es.js",
   "scripts": {
     "build": "rollup -c",
@@ -20,9 +20,9 @@
     "rollup-plugin-peer-deps-external": "^2.2.3"
   },
   "peerDependencies": {
+    "@futo-ui/utils": ">=0.8.27",
+    "@material-ui/core": ">=5.0.0-alpha.1",
     "clsx": "^1.1.1",
-    "@futo-ui/utils": "^0.7.7",
-    "@material-ui/core": "^4.11.0",
-    "react": "^16.13.1"
+    "react": "^17.0.0"
   }
 }

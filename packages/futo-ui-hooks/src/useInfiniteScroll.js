@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-const useInfiniteScroll = ({ hasMore: initialHasMore, threshold = 200 }) => {
-  const [fetching, setFetching] = useState(false);
-  const [hasMore, setHasMore] = useState(initialHasMore);
+const useInfiniteScroll = ({ fetching: fetchingInit = false, hasMore: hasMoreInit = false, threshold = 200 }) => {
+  const [fetching, setFetching] = useState(fetchingInit);
+  const [hasMore, setHasMore] = useState(hasMoreInit);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

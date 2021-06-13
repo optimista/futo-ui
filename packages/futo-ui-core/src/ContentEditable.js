@@ -1,9 +1,10 @@
 import clsx from 'clsx'
+import { equal } from '@futo-ui/utils'
 import { withStyles } from '@material-ui/core/styles'
 import React, { Component, createRef, forwardRef } from 'react'
 
-function generateGutter(theme, breakpoint) {
-  return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(s => theme.spacing(s) !== 0).reduce((acc, cur, i) => {
+const generateGutter = theme => {
+  return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(s => theme.spacing(s) !== 0).reduce((acc, cur) => {
     acc[`spacing-${cur}`] = { padding: theme.spacing(cur) }; return acc;
   }, {});
 }
@@ -12,13 +13,15 @@ const styles = theme => ({
   ...generateGutter(theme),
   base: {
     cursor: "text",
+    display: "inline-block",
     outline: "none",
     minWidth: 1,
     '&:empty:before': {
       color: "#aaaaaa",
       content: "attr(placeholder)"
     }
-  }
+  },
+  root: {}
 });
 
 class ContentEditable extends Component {
@@ -30,7 +33,10 @@ class ContentEditable extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
-  shouldComponentUpdate(nextProps) { return this.ref.current.innerText !== nextProps.html; }
+  shouldComponentUpdate(nextProps) {
+    const { current } = this.ref;
+    return current.innerText !== nextProps.html || !equal(this.props.style, nextProps.style);
+  }
   componentDidUpdate() { const el = this.ref.current; if (this.props.html !== el.innerText) el.innerText = this.props.html; }
   handleBlur(e) { const { onBlur } = this.props; onBlur && onBlur(e); }
   handleInput(e) { const { onChange } = this.props; onChange && onChange({ target: { value: e.target.innerText } }); }

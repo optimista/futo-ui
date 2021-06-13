@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { isevent, isfunction } from '@futo-ui/utils'
 
-const useDialog = (initValue = false) => {
-  const [open, setOpen] = useState(initValue);
-  function handleClose() { setOpen(false); }
-  function handleOpen() { setOpen(true); }
-  return [open, handleOpen, handleClose];
+import { useModal } from '.'
+
+const useDialog = (model, initState) => {
+  const modal = useModal(false);
+  return { ...modal, open: arg => { model && model.reset(isevent(arg) ? (isfunction(initState) ? initState() : initState) : arg); modal.open() } }; 
 }
 
 export default useDialog;

@@ -1,8 +1,8 @@
 {
   "name": "@futo-ui/hooks",
   "description": "Various react hooks used mostly in @futo-ui projects",
-  "version": "0.7.21",
-  "main": "dist/index.js",
+  "version": "0.11.25",
+  "main": "dist/index",
   "module": "dist/index.es.js",
   "scripts": {
     "build": "rollup -c",
@@ -19,7 +19,10 @@
     "rollup-plugin-peer-deps-external": "^2.2.3"
   },
   "peerDependencies": {
-    "@futo-ui/utils": "^0.7.28",
-    "react": "^16.13.1"
+    "@futo-ui/utils": ">=0.8.16",
+    "react": "^17.0.1"
+  },
+  "dependencies": {
+    "resize-observer-polyfill": "^1.5.1"
   }
 }

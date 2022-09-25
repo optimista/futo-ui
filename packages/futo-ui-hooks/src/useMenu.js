@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
 const useMenu = () => {
-  const [el, set] = useState(null);
-  const close = () => set(null);
-  const open = e => set(e.currentTarget);
-  const isOpen = Boolean(el);
+  const [el, setEl] = useState(null), [isOpen, setIsOpen] = useState(false);
+  const close = () => setIsOpen(false);
+  const open = e => { setEl(e.currentTarget); setIsOpen(true); }
   return { isOpen, open, close, el };
 }
 

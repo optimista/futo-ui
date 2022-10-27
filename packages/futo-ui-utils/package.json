@@ -1,7 +1,7 @@
 {
   "name": "@futo-ui/utils",
   "description": "Various utilitary Javascript functions used mostly in @futo-ui projects",
-  "version": "0.9.21",
+  "version": "0.10.0",
   "main": "dist/index",
   "module": "dist/index.es.js",
   "scripts": {

@@ -284,11 +284,24 @@ export const focus = (...args) => {
   }
 }
 
+const offsetCountTill = (parent, target) => {
+  let offset = 0;
+  [...parent.childNodes].some(node => {
+    if (node !== target) {
+     if (node.nodeType === 1) offset += offsetCountTill(node, target); // Node.ELEMENT_NODE === 1
+     if (node.nodeType === 3) offset += node.nodeValue.length; // Node.TEXT_NODE === 3
+    }
+    return node === target;
+  })
+  return offset;
+}
+
 const offsetCurrent = () => window.getSelection().anchorNode === null ? 0 : window.getSelection().getRangeAt(0).startOffset;
 
-const offsetPoint = ({ x, y }) => {
-  const r = document[document.caretPositionFromPoint ? 'caretPositionFromPoint' : 'caretRangeFromPoint'](x, y);
-  return r.startOffset === undefined ? r.offset : r.startOffset;
+const offsetPoint = ({ parent, target, x, y }) => {
+  const totalOffset = parent && target && parent !== target ? offsetCountTill(parent, target) : 0,
+        r = document[document.caretPositionFromPoint ? 'caretPositionFromPoint' : 'caretRangeFromPoint'](x, y);
+  return totalOffset + (r.startOffset === undefined ? r.offset : r.startOffset);
 }
 
 export const offset = (...args) => {

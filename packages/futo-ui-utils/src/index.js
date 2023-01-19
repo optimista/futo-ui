@@ -311,6 +311,11 @@ export const offset = (...args) => {
   }
 }
 
+export const selected = () => {
+  if (window.getSelection !== undefined) return window.getSelection().toString(); 
+  if (document.selection !== undefined && document.selection.type == "Text") return document.selection.createRange().text;
+}
+
 // @futo-ui/events
 export const iselement = o => typeof HTMLElement === "object" ? o instanceof HTMLElement : o && isobject(o) && o.nodeType === 1 && typeof o.nodeName === "string";
 export const isevent = e => e && (e instanceof Event || (e.nativeEvent && e.nativeEvent instanceof Event)) 
